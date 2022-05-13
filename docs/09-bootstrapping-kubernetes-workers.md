@@ -21,7 +21,7 @@ Now ssh into each one of the IP addresses received in last step.
 
 ### Running commands in parallel with tmux
 
-[tmux](https://github.com/tmux/tmux/wiki) can be used to run commands on multiple compute instances at the same time. See the [Running commands in parallel with tmux](01-prerequisites.md#running-commands-in-parallel-with-tmux) section in the Prerequisites lab.
+[tmux](https://github.com/tmux/tmux/wiki) can be used to run commands on multiple compute instances at the same time. See the [Running commands in parallel with tmux](01-prerequisites.md#running-commands-in-parallel-with-tmux) section in the Prerequisites lab.  (ctrl+b --> :set synchronize-panes on)
 
 ## Provisioning a Kubernetes Worker Node
 

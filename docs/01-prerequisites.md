@@ -10,7 +10,7 @@ This tutorial leverages the [Amazon Web Services](https://aws.amazon.com/) to st
 
 ### Install the AWS CLI
 
-Follow the AWS CLI [documentation](https://aws.amazon.com/cli/) to install and configure the `aws` command line utility.
+Follow the AWS CLI [documentation](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) to install and configure the `aws` command line utility.
 
 Verify the AWS CLI version using:
 
@@ -25,7 +25,7 @@ This tutorial assumes a default compute region and zone have been configured.
 Go ahead and set a default compute region:
 
 ```
-AWS_REGION=us-west-1
+AWS_REGION=ap-northeast-2
 
 aws configure set default.region $AWS_REGION
 ```

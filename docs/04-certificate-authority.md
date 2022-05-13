@@ -58,7 +58,7 @@ ca.pem
 
 In this section you will generate client and server certificates for each Kubernetes component and a client certificate for the Kubernetes `admin` user.
 
-### The Admin Client Certificate
+### 1. The Admin Client Certificate
 
 Generate the `admin` client certificate and private key:
 

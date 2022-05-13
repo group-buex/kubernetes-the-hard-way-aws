@@ -19,7 +19,7 @@ done
 
 Now ssh into each one of the IP addresses received in last step.
 
-### Running commands in parallel with tmux
+### Running commands in parallel with tmux (tmux를 이용해 병렬 실행)
 
 [tmux](https://github.com/tmux/tmux/wiki) can be used to run commands on multiple compute instances at the same time. See the [Running commands in parallel with tmux](01-prerequisites.md#running-commands-in-parallel-with-tmux) section in the Prerequisites lab.
 
@@ -234,6 +234,8 @@ fail with an error like this: `Error from server: error dialing backend: dial tc
 
 ## RBAC for Kubelet Authorization
 
+>run once from on of the controller nodes  
+
 In this section you will configure RBAC permissions to allow the Kubernetes API Server to access the Kubelet API on each worker node. Access to the Kubelet API is required for retrieving metrics, logs, and executing commands in pods.
 
 > This tutorial sets the Kubelet `--authorization-mode` flag to `Webhook`. Webhook mode uses the [SubjectAccessReview](https://kubernetes.io/docs/admin/authorization/#checking-api-access) API to determine authorization.
@@ -299,7 +301,7 @@ EOF
 
 ### Verification of cluster public endpoint
 
-> The compute instances created in this tutorial will not have permission to complete this section. **Run the following commands from the same machine used to create the compute instances**.
+> The compute instances created in this tutorial will not have permission to complete this section. **Run the following commands from the same machine used to create the compute instances (k8s노드를 생성했던 머신에서 다음 명령을 실행)**.
 
 Retrieve the `kubernetes-the-hard-way` Load Balancer address:
 

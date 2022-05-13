@@ -93,6 +93,9 @@ KUBERNETES_PUBLIC_ADDRESS=$(aws elbv2 describe-load-balancers \
 ### Instance Image
 
 ```sh
+sudo apt update
+sudo apt install -y jq
+
 IMAGE_ID=$(aws ec2 describe-images --owners 099720109477 \
   --output json \
   --filters \
@@ -105,11 +108,13 @@ IMAGE_ID=$(aws ec2 describe-images --owners 099720109477 \
 ### SSH Key Pair
 
 ```sh
+mkdir ~/k8s-demo
+cd ~/k8s-demo
 aws ec2 create-key-pair --key-name kubernetes --output text --query 'KeyMaterial' > kubernetes.id_rsa
 chmod 600 kubernetes.id_rsa
 ```
 
-### Kubernetes Controllers
+### Kubernetes Master Nodes
 
 Using `t3.micro` instances
 
@@ -133,7 +138,7 @@ for i in 0 1 2; do
 done
 ```
 
-### Kubernetes Workers
+### Kubernetes Worker Nodes
 
 ```sh
 for i in 0 1 2; do
