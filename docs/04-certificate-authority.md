@@ -286,6 +286,10 @@ Generate the Kubernetes API Server certificate and private key:
 ```
 KUBERNETES_HOSTNAMES=kubernetes,kubernetes.default,kubernetes.default.svc,kubernetes.default.svc.cluster,kubernetes.svc.cluster.local
 
+KUBERNETES_PUBLIC_ADDRESS=$(aws elbv2 describe-load-balancers \
+  --load-balancer-arns ${LOAD_BALANCER_ARN} \
+  --output text --query 'LoadBalancers[].DNSName')
+
 cat > kubernetes-csr.json <<EOF
 {
   "CN": "kubernetes",

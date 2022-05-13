@@ -64,7 +64,17 @@ The instance internal IP address will be used to advertise the API Server to mem
 
 ```
 INTERNAL_IP=$(curl -s http://169.254.169.254/latest/meta-data/local-ipv4)
+
+KUBERNETES_PUBLIC_ADDRESS=<ELB_ADDRESS>
 ```
+
+**!! Keep KUBERNETES_PUBLIC_ADDRESS value from the compute server**
+```
+KUBERNETES_PUBLIC_ADDRESS=$(aws elbv2 describe-load-balancers \
+  --load-balancer-arns ${LOAD_BALANCER_ARN} \
+  --output text --query 'LoadBalancers[].DNSName')
+```
+
 
 Create the `kube-apiserver.service` systemd unit file:
 

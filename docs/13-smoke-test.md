@@ -190,6 +190,8 @@ NODE_PORT=$(kubectl get svc nginx \
 Create a firewall rule that allows remote access to the `nginx` node port:
 
 ```
+SECURITY_GROUP_ID=$(aws ec2 describe-security-groups --filters 'Name=tag:Name,Values=kubernetes' --query 'SecurityGroups[*].[GroupId]' --output text)
+
 aws ec2 authorize-security-group-ingress \
   --group-id ${SECURITY_GROUP_ID} \
   --protocol tcp \

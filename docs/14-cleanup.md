@@ -45,6 +45,14 @@ aws ec2 delete-key-pair --key-name kubernetes
 Delete the external load balancer network resources:
 
 ```
+LOAD_BALANCER_ARN=$(aws elbv2 describe-load-balancers --names kubernetes --query 'LoadBalancers[*].[LoadBalancerArn]' --output text)
+TARGET_GROUP_ARN=$(aws elbv2 describe-target-groups --names kubernetes --query 'TargetGroups[*].TargetGroupArn' --output text)
+SECURITY_GROUP_ID=$(aws ec2 describe-security-groups --filters 'Name=tag:Name,Values=kubernetes' --query 'SecurityGroups[*].[GroupId]' --output text)
+ROUTE_TABLE_ID=$(aws ec2 describe-route-tables --output text --filters 'Name=tag:Name,Values=kubernetes' --query 'RouteTables[].Associations[].RouteTableId')
+INTERNET_GATEWAY_ID=$(aws ec2 describe-internet-gateways --output text --filters 'Name=tag:Name,Values=kubernetes' --query 'InternetGateways[*].InternetGatewayId')
+VPC_ID=$(aws ec2 describe-vpcs --output text --filters 'Name=tag:Name,Values=kubernetes-the-hard-way' --query 'Vpcs[*].VpcId')
+SUBNET_ID=$(aws ec2 describe-subnets --output text --filters 'Name=tag:Name,Values=kubernetes' --query 'Subnets[*].SubnetId')
+
 aws elbv2 delete-load-balancer --load-balancer-arn "${LOAD_BALANCER_ARN}"
 aws elbv2 delete-target-group --target-group-arn "${TARGET_GROUP_ARN}"
 aws ec2 delete-security-group --group-id "${SECURITY_GROUP_ID}"
