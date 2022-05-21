@@ -23,6 +23,16 @@ Now ssh into each one of the IP addresses received in last step.
 
 [tmux](https://github.com/tmux/tmux/wiki) can be used to run commands on multiple compute instances at the same time. See the [Running commands in parallel with tmux](01-prerequisites.md#running-commands-in-parallel-with-tmux) section in the Prerequisites lab.
 
+```
+tmux new -s master
+```
+
+ctrl+b -> "
+ctrl+b -> "
+
+ctrl+b -> shift + : -> set synchronize-panes on
+
+
 ## Bootstrapping an etcd Cluster Member
 
 ### Download and Install the etcd Binaries
